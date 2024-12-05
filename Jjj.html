@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>para tiii</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        img {
+            width: 100%;
+            max-width: 400px;
+            max-height: 300px;
+            object-fit: cover;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin: 20px 0;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+        }
+        .button.yes {
+            background-color: #4caf50;
+        }
+        .button.no {
+            background-color: #a52a2a;
+        }
+        .hidden {
+            display: none;
+        }
+        .result {
+            color: #ffb6c1; /* Rosa claro */
+            font-size: 32px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="gif" src="imagen2.gif" alt="Imagen GIF"> <!-- GIF aquí -->
+        <h1>¿Quieres ser mi Novio?</h1>
+        <div class="buttons">
+            <button class="button yes" onclick="sayYes()">Sí</button>
+            <button class="button no" onclick="sayNo()">No</button>
+        </div>
+    </div>
+    <div class="result hidden">
+        <img src="imagen.gif" alt="Imagen final"> <!-- Imagen final -->
+        <p>Sii, yo sabía💗</p>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+
+        function sayYes() {
+            // Ocultar todo y mostrar el mensaje final
+            document.querySelector('.container').classList.add('hidden');
+            document.querySelector('.result').classList.remove('hidden');
+        }
+
+        function sayNo() {
+            const noButton = document.querySelector('.button.no');
+            const yesButton = document.querySelector('.button.yes');
+            const gif = document.getElementById('gif');
+
+            // Incrementar contador de clics en el botón "No"
+            noClickCount++;
+            switch (noClickCount) {
+                case 1:
+                    noButton.textContent = "Ándaleee";
+                    break;
+                case 2:
+                    noButton.textContent = "Yo sé que quieres";
+                    break;
+                case 3:
+                    noButton.textContent = "Porfis";
+                    break;
+                case 4:
+                    noButton.textContent = "No seas maloo";
+                    break;
+                case 5:
+                    noButton.textContent = "Porfaaa";
+                    noClickCount = 0; // Reiniciar contador
+                    break;
+            }
+
+            // Reiniciar el GIF
+            gif.src = gif.src;
+
+            // Hacer crecer el botón verde con cada clic
+            const currentWidth = yesButton.offsetWidth;
+            const currentHeight = yesButton.offsetHeight;
+            yesButton.style.width = `${currentWidth + 20}px`; // Crece 20px en ancho
+            yesButton.style.height = `${currentHeight + 10}px`; // Crece 10px en alto
+        }
+    </script>
+</body>
+</html>
